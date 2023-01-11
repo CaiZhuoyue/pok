@@ -26,3 +26,4 @@ generated-code/
 GPATH
 GRTAGS
 GTAGS
+examples/semaphores/qemu.pid
