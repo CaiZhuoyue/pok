@@ -57,6 +57,51 @@ static const char *state_names[] = {
 extern pok_partition_t pok_partitions[];
 
 /**
+ * \
+ * scheduling algorithm based on priority
+ * return the thread with the highed priority
+ */
+uint32_t pok_czy_sched_part_priority(const uint32_t index_low, const uint32_t index_high,
+                                     const uint32_t prev_thread, const uint32_t current_thread)
+{
+    uint32_t max_thread; // Thread with the highest priority
+    uint32 from, temp;
+    uint32_t part_size=index_high-index_low;
+
+    from=current_thread != IDLE_THREAD ? current_thread : prev_thread;
+
+    // Go through the threads in this partition from low to high
+    // Choose the one with the highest priority
+    temp=from;
+    do{
+        if(POK_STATE_RUNNABLE==pos_threads[temp].state){
+            if(pok_threads[temp].priority>pok_threads[max_thread].priority) {
+                max_thread = temp;
+            }
+        }
+        temp=index_low+(temp-index_low+1)%part_size;
+    } while(temp!=from);
+
+    return max_thread;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
  * \brief The variable that contains the value of partition currently being
  * executed
  */
