@@ -163,6 +163,9 @@ endif
 # COMMON STUFF #
 ################
 
+# can run without desktop or graphic interface
+QEMU_MISC += -serial mon:stdio -nographic 
+
 launch-run:
 	$(CP) $(POK_PATH)/misc/grub-boot-only.img ./
 	$(ECHO) $(ECHO_FLAGS) "[QEMU] Start"
