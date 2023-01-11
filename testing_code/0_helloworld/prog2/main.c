@@ -3,7 +3,7 @@
 #include <core/partition.h>
 #include <types.h>
 
-static void *job1();
+// static void *job1();
 
 int main() {
     uint8_t tid;
